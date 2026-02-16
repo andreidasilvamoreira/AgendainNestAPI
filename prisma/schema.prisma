@@ -1,0 +1,66 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+enum Papel {
+  ADMIN
+  FUNCIONARIO
+  CLIENTE
+}
+
+enum StatusAgendamento {
+  AGENDADO
+  CANCELADO
+  CONCLUIDO
+}
+
+model Agendamento {
+  id                       Int               @id @default(autoincrement())
+  servico_id               Int
+  cliente_id               Int
+  funcionario_id           Int
+  inicio_em                DateTime
+  fim_em                   DateTime
+  status                   StatusAgendamento @default(AGENDADO)
+  preco_centavos_snapshot  Int
+  duracao_minutos_snapshot Int
+  criado_em                DateTime
+  atualizado_em            DateTime          @updatedAt
+
+  servico     Servico @relation(fields: [servico_id], references: [id])
+  cliente     Usuario @relation("ClienteAgendamento", fields: [cliente_id], references: [id])
+  funcionario Usuario @relation("FuncionarioAgendamento", fields: [funcionario_id], references: [id])
+
+  @@index([funcionario_id, inicio_em])
+  @@index([cliente_id, inicio_em])
+}
+
+model Usuario {
+  id            Int      @id @default(autoincrement())
+  nome          String
+  email         String   @unique
+  senha_hash    String
+  papel         Papel
+  criado_em     DateTime @default(now())
+  atualizado_em DateTime @updatedAt
+
+  agendamentosComoCliente   Agendamento[]     @relation("ClienteAgendamentos")
+  agendamentoComoFuncionaro Agendamento[]     @relation("FuncionarioAgendamentos")
+  disponibilidades          Disponibilidade[]
+}
+
+model Servico {
+  id              Int           @id @default(autoincrement())
+  nome            String
+  duracao_minutos Int
+  preço_centavos Int
+  ativo           Boolean       @default(true)
+  criado_em       DateTime      @default(now())
+  atualizado_em   DateTime      @updatedAt
+  agendamento     Agendamento[]
+}
