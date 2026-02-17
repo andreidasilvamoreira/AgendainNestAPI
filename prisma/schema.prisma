@@ -1,5 +1,5 @@
 generator client {
-  provider = "prisma-client"
+  provider = "prisma-client-js"
   output   = "../generated/prisma"
 }
 
@@ -19,6 +19,32 @@ enum StatusAgendamento {
   CONCLUIDO
 }
 
+model Usuario {
+  id            Int      @id @default(autoincrement())
+  nome          String
+  email         String   @unique
+  senha_hash    String
+  papel         Papel
+  criado_em     DateTime @default(now())
+  atualizado_em DateTime @updatedAt
+
+  agendamentosComoCliente     Agendamento[]     @relation("ClienteAgendamentos")
+  agendamentosComoFuncionario Agendamento[]     @relation("FuncionarioAgendamentos")
+  disponibilidades            Disponibilidade[]
+}
+
+model Servico {
+  id              Int      @id @default(autoincrement())
+  nome            String
+  duracao_minutos Int
+  preco_centavos  Int
+  ativo           Boolean  @default(true)
+  criado_em       DateTime @default(now())
+  atualizado_em   DateTime @updatedAt
+
+  agendamentos Agendamento[]
+}
+
 model Agendamento {
   id                       Int               @id @default(autoincrement())
   servico_id               Int
@@ -29,38 +55,29 @@ model Agendamento {
   status                   StatusAgendamento @default(AGENDADO)
   preco_centavos_snapshot  Int
   duracao_minutos_snapshot Int
-  criado_em                DateTime
+  criado_em                DateTime          @default(now())
   atualizado_em            DateTime          @updatedAt
-
-  servico     Servico @relation(fields: [servico_id], references: [id])
-  cliente     Usuario @relation("ClienteAgendamento", fields: [cliente_id], references: [id])
-  funcionario Usuario @relation("FuncionarioAgendamento", fields: [funcionario_id], references: [id])
+  servico                  Servico           @relation(fields: [servico_id], references: [id])
+  cliente                  Usuario           @relation("ClienteAgendamentos", fields: [cliente_id], references: [id])
+  funcionario              Usuario           @relation("FuncionarioAgendamentos", fields: [funcionario_id], references: [id])
 
   @@index([funcionario_id, inicio_em])
   @@index([cliente_id, inicio_em])
 }
 
-model Usuario {
-  id            Int      @id @default(autoincrement())
-  nome          String
-  email         String   @unique
-  senha_hash    String
-  papel         Papel
+model Disponibilidade {
+  id Int @id @default(autoincrement())
+
+  funcionario_id Int
+  dia_semana     Int
+  inicio         DateTime @db.Time
+  fim            DateTime @db.Time
+  ativo          Boolean  @default(true)
+
   criado_em     DateTime @default(now())
   atualizado_em DateTime @updatedAt
 
-  agendamentosComoCliente   Agendamento[]     @relation("ClienteAgendamentos")
-  agendamentoComoFuncionaro Agendamento[]     @relation("FuncionarioAgendamentos")
-  disponibilidades          Disponibilidade[]
-}
+  funcionario Usuario @relation(fields: [funcionario_id], references: [id])
 
-model Servico {
-  id              Int           @id @default(autoincrement())
-  nome            String
-  duracao_minutos Int
-  preço_centavos Int
-  ativo           Boolean       @default(true)
-  criado_em       DateTime      @default(now())
-  atualizado_em   DateTime      @updatedAt
-  agendamento     Agendamento[]
+  @@index([funcionario_id, dia_semana])
 }
