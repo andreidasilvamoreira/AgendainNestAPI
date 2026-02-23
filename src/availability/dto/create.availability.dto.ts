@@ -1,6 +1,6 @@
-import { IsBoolean, IsDate, IsInt, IsOptional, IsString, Max, Min } from "class-validator"
+import { IsBoolean, IsInt, IsOptional, IsString, Max, Min } from "class-validator"
 
-export class createAvailabilityDto {
+export class CreateAvailabilityDto {
 
     @IsInt()
     funcionario_id: number;
