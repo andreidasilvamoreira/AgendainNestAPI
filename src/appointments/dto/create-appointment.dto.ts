@@ -1,6 +1,6 @@
 import { IsDateString, IsInt } from "class-validator";
 
-export class createAppointmentDto{
+export class CreateAppointmentDto{
 
     @IsInt()
     servico_id: number;
