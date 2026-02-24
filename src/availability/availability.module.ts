@@ -6,4 +6,4 @@ import { AvailabilityService } from './availability.service';
   controllers: [AvailabilityController],
   providers: [AvailabilityService]
 })
-export class AuthModule {}
+export class AvailabilityModule {}

@@ -5,6 +5,15 @@ import * as bcrypt from 'bcrypt';
 import { UpdateUserDto } from './dto/update.user.dto';
 import { Prisma } from '@prisma/client';
 
+const userSelect = {
+    id: true, 
+    nome: true, 
+    email: true, 
+    papel: true, 
+    criado_em: true, 
+    atualizado_em: true
+} satisfies Prisma.UsuarioSelect
+
 @Injectable()
 export class UsersService {
     constructor(private prisma: PrismaService) {}
@@ -12,14 +21,14 @@ export class UsersService {
     async findAll() {
         return this.prisma.usuario.findMany({
             orderBy: { id: 'desc' },
-            select: { id: true, nome: true, email: true, papel: true, criado_em: true, atualizado_em: true}
+            select: userSelect
         })
     }
 
     async find(id: number) {
         const item = await this.prisma.usuario.findUnique({
              where: { id }, 
-             select: { id: true, nome: true, email: true, papel: true, criado_em: true, atualizado_em: true}
+             select: userSelect
             })
         if(!item) { throw new NotFoundException('Usuário não encontrado')}
         return item
@@ -31,7 +40,7 @@ export class UsersService {
 
         return this.prisma.usuario.create({ 
             data: { nome: dto.nome, email: dto.email, senha_hash, papel: dto.papel},
-            select: { id: true, nome: true, email: true, papel: true, criado_em: true, atualizado_em: true}
+            select: userSelect
          })
     }
 
@@ -50,12 +59,12 @@ export class UsersService {
         return this.prisma.usuario.update({
             where: { id },
             data,
-            select: { id: true, nome: true, email: true, papel: true, criado_em: true, atualizado_em: true}
+            select: userSelect
         })
     }
 
     async delete(id: number) {
         await this.find(id)
-        return this.prisma.usuario.delete({ where: { id }})
+        return this.prisma.usuario.delete({ where: { id }, select: userSelect})
     }
 }
