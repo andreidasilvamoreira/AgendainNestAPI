@@ -3,7 +3,7 @@ import { CreateAvailabilityDto } from './dto/create.availability.dto';
 import { AvailabilityService } from './availability.service';
 import { UpdateAvailabilityDto } from './dto/store.availability.dto';
 
-@Controller('auth')
+@Controller('availability')
 export class AvailabilityController {
     
     constructor(private readonly availabilityService: AvailabilityService){}

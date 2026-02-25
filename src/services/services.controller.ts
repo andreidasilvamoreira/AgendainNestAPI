@@ -20,7 +20,7 @@ export class ServicesController {
 
     @Post()
     create(@Body() dto: CreateServiceDto) {
-        this.serviceService.create(dto)
+        return this.serviceService.create(dto)
     }
 
     @Patch(':id')

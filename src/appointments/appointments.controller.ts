@@ -26,7 +26,7 @@ export class AppointmentsController {
     update(
         @Param('id', ParseIntPipe) id: number, 
         @Body() dto: UpdateAppointmentDto){
-            return this.appointmentsService.update(id, dto)
+        return this.appointmentsService.update(id, dto)
     }
 
     @Delete(':id')

@@ -74,9 +74,14 @@ export class AppointmentsService {
 
     async update(id: number, dto: UpdateAppointmentDto) {
         await this.find(id)
+
         return this.prisma.agendamento.update({
             where: { id },
             data: {
+                cliente_id: dto.cliente_id,
+                funcionario_id: dto.funcionario_id,
+                servico_id: dto.servico_id,
+                inicio_em: dto.inicio_em ? new Date(dto.inicio_em) : undefined,
                 status: dto.status,
             }
         })
@@ -84,7 +89,8 @@ export class AppointmentsService {
 
     async delete(id: number) {
         await this.find(id)
-        this.prisma.agendamento.delete({
+
+        return this.prisma.agendamento.delete({
             where: { id }
         })
     }
