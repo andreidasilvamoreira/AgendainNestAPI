@@ -37,9 +37,7 @@ export class AppointmentsService {
 
         const inicio = new Date(dto.inicio_em)
 
-        if(Number.isNaN(inicio.getTime())) {
-            throw new BadRequestException('Início inválido')
-        }
+        if(Number.isNaN(inicio.getTime())) throw new BadRequestException('Início inválido')
 
         const fim = new Date(
             inicio.getTime() + servico.duracao_minutos * 60_000
@@ -54,9 +52,7 @@ export class AppointmentsService {
             }
         })
 
-        if(conflito) {
-            throw new BadRequestException('Horário indisponível para este funcionário')
-        }
+        if(conflito) throw new BadRequestException('Horário indisponível para este funcionário')
 
         return this.prisma.agendamento.create({
         data: {
