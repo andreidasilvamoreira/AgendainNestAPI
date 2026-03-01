@@ -1,35 +1,40 @@
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, UseGuards } from '@nestjs/common';
 import { CreateServiceDto } from './dto/create.service.dto';
 import { ServicesService } from './services.service';
 import { UpdateServiceDto } from './dto/update.service.dto';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @Controller('services')
 export class ServicesController {
+  constructor(private readonly serviceService: ServicesService) {}
 
-    constructor(private readonly serviceService: ServicesService){}
-    
-    @Get()
-    findAll(){
-        return this.serviceService.findAll()
-    }
+  @UseGuards(JwtAuthGuard)
+  @Get()
+  findAll() {
+    return this.serviceService.findAll();
+  }
 
-    @Get(':id')
-    find(@Param('id', ParseIntPipe) id: number){
-        return this.serviceService.find(id)
-    }
+  @UseGuards(JwtAuthGuard)
+  @Get(':id')
+  find(@Param('id', ParseIntPipe) id: number) {
+    return this.serviceService.find(id);
+  }
 
-    @Post()
-    create(@Body() dto: CreateServiceDto) {
-        return this.serviceService.create(dto)
-    }
+  @UseGuards(JwtAuthGuard)
+  @Post()
+  create(@Body() dto: CreateServiceDto) {
+    return this.serviceService.create(dto);
+  }
 
-    @Patch(':id')
-    update(@Param('id', ParseIntPipe) id: number, @Body() dto: UpdateServiceDto){
-        return this.serviceService.update(id, dto)
-    }
+  @UseGuards(JwtAuthGuard)
+  @Patch(':id')
+  update(@Param('id', ParseIntPipe) id: number, @Body() dto: UpdateServiceDto) {
+    return this.serviceService.update(id, dto);
+  }
 
-    @Delete(':id')
-    delete(@Param('id', ParseIntPipe) id:number) {
-        return this.serviceService.delete(id)
-    }
+  @UseGuards(JwtAuthGuard)
+  @Delete(':id')
+  delete(@Param('id', ParseIntPipe) id: number) {
+    return this.serviceService.delete(id);
+  }
 }

@@ -18,11 +18,7 @@ export class AuthService {
 
   async Login(email: string, senha: string) {
     const user = await this.userService.findByEmail(email);
-    if (!email) throw new UnauthorizedException('Credenciais Inválidas');
-
-    if (!user?.senha_hash) {
-      throw new UnauthorizedException('Credenciais inválidas');
-    }
+    if (!user) throw new UnauthorizedException('Credenciais Inválidas');
 
     const ok = await bcrypt.compare(senha, user.senha_hash);
     if (!ok) throw new UnauthorizedException('Credenciais Inválidas');
