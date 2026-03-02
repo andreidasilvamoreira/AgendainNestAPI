@@ -69,9 +69,9 @@ model Disponibilidade {
 
   funcionario_id Int
   dia_semana     Int
-  inicio         DateTime @db.Time
-  fim            DateTime @db.Time
-  ativo          Boolean  @default(true)
+  inicio         String  @db.VarChar(5)
+  fim            String  @db.VarChar(5)
+  ativo          Boolean @default(true)
 
   criado_em     DateTime @default(now())
   atualizado_em DateTime @updatedAt

@@ -1,24 +1,35 @@
 import 'dotenv/config';
-import * as bcrypt from 'bcrypt';
 import { PrismaService } from './prisma.service';
+
+import { seedUsers } from './seeds/user.seed';
+import { seedServices } from './seeds/services.seed';
+import { seedDisponibilidades } from './seeds/disponibilidade.seed';
+import { seedAgendamentos } from './seeds/agendamento.seed';
 
 async function main() {
   const prisma = new PrismaService();
   await prisma.$connect();
 
-  const senha_hash = await bcrypt.hash('123456', 10);
+  await prisma.agendamento.deleteMany();
+  await prisma.disponibilidade.deleteMany();
+  await prisma.servico.deleteMany();
+  await prisma.usuario.deleteMany();
 
-  await prisma.usuario.upsert({
-    where: { email: 'admin@email.com' },
-    update: {},
-    create: {
-      nome: 'Admin',
-      email: 'admin@email.com',
-      senha_hash,
-      papel: 'ADMIN',
-    },
+  const { admin, funcionario1, funcionario2, cliente1, cliente2 } = await seedUsers(prisma);
+  const { servico } = await seedServices(prisma);
+
+  await seedDisponibilidades(prisma, [funcionario1.id, funcionario2.id]);
+  await seedAgendamentos(prisma, {
+    servicoId: servico.id,
+    clienteId: cliente1.id,
+    funcionarioIds: [funcionario1.id, funcionario2.id],
   });
 
+  await seedAgendamentos(prisma, {
+    servicoId: servico.id,
+    clienteId: cliente2.id,
+    funcionarioIds: [funcionario1.id, funcionario2.id],
+  });
   console.log('Admin criado com sucesso!');
   await prisma.$disconnect();
 }

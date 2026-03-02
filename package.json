@@ -7,6 +7,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "prisma:seed": "tsx src/prisma/seed.ts",
+    "db:reset": "npx prisma migrate reset --force && npm run db:seed",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
