@@ -4,8 +4,9 @@ import { AppointmentsService } from './appointments.service';
 import { PrismaModule } from '../prisma/prisma.module';
 
 @Module({
+  exports: [AppointmentsService],
   imports: [PrismaModule],
   controllers: [AppointmentsController],
-  providers: [AppointmentsService]
+  providers: [AppointmentsService],
 })
 export class AppointmentsModule {}
