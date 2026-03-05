@@ -1,9 +1,19 @@
 .all-button {
-  padding: 10px;
+  padding: 10px 20px;
   border-radius: 10px;
   border: none;
   background-color: rgb(31 101 197);
 
   color: rgb(255, 255, 255);
   font-weight: 600;
+}
+
+.all-button:hover{
+  background-color: rgba(31, 100, 197, 0.923);
+}
+
+@media screen and (max-width: 480px) {
+  .all-button {
+    padding: 5px 15px;
+  }
 }

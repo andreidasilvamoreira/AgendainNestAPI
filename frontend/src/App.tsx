@@ -2,13 +2,14 @@ import NavBar from "./components/NavBar/NavBar"
 
 
 import './App.css'
+import Banner from "./components/Banner/Banner"
 
 function App() {
 
   return (
-    <div className="centralizar">
+    <div >
     <NavBar />
-    
+    <Banner />
     </div>
   )
 }
