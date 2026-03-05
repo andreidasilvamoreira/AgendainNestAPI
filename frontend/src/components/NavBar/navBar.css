@@ -1,7 +1,7 @@
 .menu-align {
   background-color: rgb(238, 238, 238);
-    padding: 20px 0;
-    border-bottom: 1px solid gray;
+  padding: 20px 0;
+  border-bottom: 1px solid gray;
 }
 
 .menu {
@@ -9,9 +9,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  text-align: center;
-  
-  
+  text-align: center;   
 }
 
 .menu h1 {
@@ -38,14 +36,20 @@ nav{
 }
 
 @media screen and (max-width: 480px) {
-  h1 {
+  .menu {
+    justify-content: end;
+    gap: 10px;
+  }
+
+ .menu h1 {
     font-size: 1.4rem;
   }
+
   .menu-position {
     margin: 0;
   }
 
   .menu h1 {
-  margin: 0 ;
-}
+    margin: 0 ;
+  }
 }
