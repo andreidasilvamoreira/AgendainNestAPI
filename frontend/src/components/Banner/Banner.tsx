@@ -6,7 +6,7 @@ import "./banner.css";
 
 const Banner = () => {
   return (
-  <section className="banner">
+  <header className="banner">
     <h2>Agende seu Horário</h2>
     <p>Escolha um serviço e encontre o melhor horário para você.</p>
 
@@ -15,7 +15,7 @@ const Banner = () => {
       <DropDown></DropDown>
     </div>
     <Button>Ver Horários Disponiveis</Button>
-  </section>
+  </header>
   );
 };
 

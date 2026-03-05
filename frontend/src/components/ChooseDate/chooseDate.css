@@ -1,0 +1,63 @@
+.choose-date-position {
+  display: flex;
+  justify-content: center;
+  margin: 40px;
+}
+
+.choose-date {
+  display:flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.choose-date-week{
+  display: flex;
+  padding: 10px;
+  gap: 8px;
+  border-radius: 12px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.choose-date-day {
+ text-transform: capitalize;
+ font-weight: 500;
+ text-align: center;
+}
+
+.schedule {
+  text-align: center;
+  border-left: 1px solid gray;
+}
+
+.schedule-time {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+
+  
+}
+
+.schedule-time li {
+  padding: 5px;
+  width: 50%;
+  border-radius: 12px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+@media screen and (max-width: 745px) {
+  .choose-date-position{
+    text-align: center;
+  }
+  .choose-date {
+    flex-direction: column;
+
+  }
+  .schedule {
+    border: none;
+  }
+}
