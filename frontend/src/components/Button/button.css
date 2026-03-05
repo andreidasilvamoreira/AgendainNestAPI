@@ -1,0 +1,9 @@
+.all-button {
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  background-color: rgb(31 101 197);
+
+  color: rgb(255, 255, 255);
+  font-weight: 600;
+}

@@ -6,4 +6,10 @@
   list-style: none;
   text-decoration: none;
 }
-
+body {
+  margin: 0;
+}
+.centralizar {
+  width: 90vw;
+  margin: auto;
+}

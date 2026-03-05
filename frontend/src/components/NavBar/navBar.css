@@ -1,0 +1,32 @@
+.menu {
+  width: 90vw;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
+
+nav{
+  flex: 0.3;
+}
+
+.menu-position {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  justify-content: space-between;
+  min-width: 250px;
+}
+
+.menu-position li:hover {
+  scale: 1.1;
+  text-decoration: underline;
+}
+
+@media screen and (max-width: 480px) {
+  h1 {
+    font-size: 1.4rem;
+  }
+}
