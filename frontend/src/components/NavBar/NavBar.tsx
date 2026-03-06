@@ -10,9 +10,9 @@ const NavBar = () => {
         </div>
         <nav>
           <ul className="menu-position">
-            <li>Serviços</li>
-            <li>Agendar</li>
-            <li>Perfil</li>
+            <li><a href="/services">Serviços</a></li>
+            <li><a href="/home">Agendar</a></li>
+            <li><a href="/profile">Perfil</a></li>
             <li><Button>Sair</Button></li>
           </ul>
         </nav>
