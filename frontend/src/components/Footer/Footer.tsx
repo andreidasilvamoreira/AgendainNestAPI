@@ -7,7 +7,7 @@ const Footer = () => {
     <section className="menu-align">
       <div className="menu">
         <div >
-          <h2>Fale Conosco</h2>
+          <h2 className="titulo-rodape">Fale Conosco</h2>
         </div>
         <nav>
           <ul className="menu-position">

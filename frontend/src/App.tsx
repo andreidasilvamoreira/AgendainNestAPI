@@ -1,23 +1,12 @@
-import './App.css'
-
-
-import NavBar from "./components/NavBar/NavBar"
-import Banner from "./components/Banner/Banner"
-import ServicesOptions from "./components/ServicesOptions/ServicesOptions"
-import ChooseDate from "./components/ChooseDate/ChooseDate"
-import Footer from './components/Footer/Footer'
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/Home/Home";
 
 function App() {
-
   return (
-    <div >
-    <NavBar />
-    <Banner />
-    <ServicesOptions />
-    <ChooseDate />
-    <Footer />
-    </div>
-  )
+    <Routes>
+      <Route path="/home" element={<Home />} />
+    </Routes>
+  );
 }
 
-export default App
+export default App;
