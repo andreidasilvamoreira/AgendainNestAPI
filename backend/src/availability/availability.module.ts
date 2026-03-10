@@ -6,6 +6,6 @@ import { PrismaModule } from '../prisma/prisma.module';
 @Module({
   imports: [PrismaModule],
   controllers: [AvailabilityController],
-  providers: [AvailabilityService]
+  providers: [AvailabilityService],
 })
 export class AvailabilityModule {}

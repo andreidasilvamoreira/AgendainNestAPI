@@ -1,4 +1,6 @@
-import CardServices from "../CardServices/CardServices";
+
+
+import CardServices from "../../../../components/CardServices/CardServices";
 import "./servicesOptions.css"
 
 const ServicesOptions = () => {
@@ -10,12 +12,8 @@ const ServicesOptions = () => {
    <CardServices servico="servico" caminho="*" preco="20" tempo="30"  />
    <CardServices servico="servico" caminho="*" preco="20" tempo="30"  />
    <CardServices servico="servico" caminho="*" preco="20" tempo="30"  />
-
-
  </div>
 </section>
-
-
   );
 };
 

@@ -1,6 +1,6 @@
-import Button from "../Button/Button";
-import DropDown from "../DropDown/DropDown";
+import DropDown from "../../../../components/DropDown/DropDown";
 import "./banner.css";
+
 
 
 
@@ -14,7 +14,7 @@ const Banner = () => {
       <DropDown></DropDown>
       <DropDown></DropDown>
     </div>
-    <Button>Ver Horários Disponiveis</Button>
+  
   </header>
   );
 };

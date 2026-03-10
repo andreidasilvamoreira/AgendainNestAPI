@@ -1,6 +1,6 @@
-import History from "../../components/History/History";
-import InformationUser from "../../components/InformationUser/InformationUser";
-import Schedule from "../../components/Schedule/Schedule";
+import History from "./components/History/History";
+import InformationUser from "./components/InformationUser/InformationUser";
+import Schedule from "./components/Schedule/Schedule";
 
 const Profile = () => {
   return (
@@ -8,7 +8,6 @@ const Profile = () => {
   <InformationUser />
   <Schedule />
   <History />
-
  </div>
     
   );

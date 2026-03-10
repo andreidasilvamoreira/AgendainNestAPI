@@ -4,8 +4,8 @@ const DropDown = () => {
   return (
 
 <select className="drop-down">
-  <option value="someOption">Some option</option>
-  <option value="otherOption">Other option</option>
+  <option value="someOption">Serviço</option>
+  <option value="otherOption">Funcionario</option>
 </select>
 
 

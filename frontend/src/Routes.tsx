@@ -4,7 +4,7 @@ import MainLayout from "./components/MainLayout/MainLayout";
 import Profile from "./pages/Profile/Profile";
 import Services from "./pages/Services/Services";
 
-function App() {
+function AppRoutes() {
   return (
     <Routes>
       <Route element={<MainLayout />}>
@@ -16,4 +16,4 @@ function App() {
   );
 }
 
-export default App;
+export default AppRoutes;
