@@ -1,0 +1,33 @@
+.schedule-area {
+  margin: 0 0 20px 0;
+  padding: 16px;
+  border: 1px solid #f2f2f2;
+  border-radius: 12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: nowrap;
+  gap: 15px;
+
+}
+
+.warp {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  max-width: 900px;
+}
+
+@media screen and (max-width: 1754px) {
+  .warp {
+    max-width: 600px;
+  }
+}
+
+@media screen and (max-width: 1224px) {
+  .warp {
+    max-width: 277px;
+  }
+}
+
